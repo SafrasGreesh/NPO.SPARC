@@ -1,0 +1,51 @@
+﻿<Window x:Class="NPO.SPARC._2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NPO.SPARC._2"
+        mc:Ignorable="d"
+        Title="Работа с базой данных" Height="550" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="16,31,0,0">
+            <TabItem x:Name="testsTabItem" Header="Tests">
+                <DataGrid x:Name="testsDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Test ID" Binding="{Binding TestId}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Test Date" Binding="{Binding TestDate}" />
+                        <DataGridTextColumn Header="Block Name" Binding="{Binding BlockName}" />
+                        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="DeleteTestButton_Click" Tag="{Binding}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem x:Name="parametersTabItem" Header="Parameters">
+                <DataGrid x:Name="parametersDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Parameter ID" Binding="{Binding ParameterId}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Test ID" Binding="{Binding TestId}" />
+                        <DataGridTextColumn Header="Parameter Name" Binding="{Binding ParameterName}" />
+                        <DataGridTextColumn Header="Required Value" Binding="{Binding RequiredValue}" />
+                        <DataGridTextColumn Header="Measured Value" Binding="{Binding MeasuredValue}" />
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="DeleteParameterButton_Click" Tag="{Binding}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+
+        <Button Content="Save Changes" Click="SaveChangesButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,6,0,0" />
+    </Grid>
+</Window>
